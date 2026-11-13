@@ -23,7 +23,12 @@ public class Main{
                 if(tasks.isEmpty()){
                     System.out.println("No task added.");
                 }
-                System.out.println(tasks);
+                else{
+                    for(Task t : tasks){
+                        System.out.println(t);
+                    }
+
+                }
             }
             else if(choice.equals("3")){
                 System.out.println("Byee!");

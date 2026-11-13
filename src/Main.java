@@ -1,6 +1,16 @@
 import java.util.*;
 
 public class Main {
+    static void showTask(List<Task> tasks){
+        if (tasks.isEmpty()) {
+            System.out.println("No task added.");
+        }
+        else {
+            for (Task t : tasks) {
+                System.out.println(t);
+            }
+        }
+    }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         List<Task> tasks = new ArrayList<>();
@@ -25,14 +35,7 @@ public class Main {
                     nextId++;
                 }
             } else if (choice.equals("2")) {
-                if (tasks.isEmpty()) {
-                    System.out.println("No task added.");
-                } else {
-                    for (Task t : tasks) {
-                        System.out.println(t);
-                    }
-
-                }
+                showTask(tasks);
             } else if (choice.equals("3")) {
                 System.out.print("Task id: ");
                 try {

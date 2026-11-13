@@ -1,10 +1,23 @@
+import java.util.*;
 public class Main{
     public static void main(String[] args){
-        Task t1 = new Task(1, "Studying DSA");
-        Task t2 = new Task(2,"Gym");
+        Scanner sc = new Scanner(System.in);
+        List<Task> tasks = new ArrayList<>();
+        int nextId = 1;
 
+        while(true){
+            System.out.print("Title (q to quit) : ");
+            String title = sc.nextLine();
 
-        t1.markDone();
-        System.out.println(t1);
+            if(title.equals("q")){
+                break;
+            }
+            Task t = new Task(nextId,title);
+            tasks.add(t);
+            nextId++;
+
+        }
+
+        System.out.println(tasks);
     }
 }

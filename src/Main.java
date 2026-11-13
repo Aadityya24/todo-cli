@@ -34,15 +34,16 @@ public class Main{
             else if(choice.equals("3")){
                 System.out.print("Task id: ");
                 int id = Integer.parseInt(sc.nextLine());
-
+                boolean found = false;
                 for(Task t : tasks){
                     if(t.getId() == id){
                         t.markDone();
+                        found = true;
                         System.out.println(t);
                     }
-                    else{
-                        System.out.println("Invalid id");
-                    }
+                }
+                if (found == false) {
+                    System.out.println("Invalid id");
                 }
             }
             else if(choice.equals("4")){

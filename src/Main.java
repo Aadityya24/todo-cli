@@ -1,11 +1,12 @@
 import java.util.*;
-public class Main{
-    public static void main(String[] args){
+
+public class Main {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         List<Task> tasks = new ArrayList<>();
         int nextId = 1;
 
-        while(true){
+        while (true) {
             System.out.println("1: Add task");
             System.out.println("2: show task");
             System.out.println("3: Mark as done");
@@ -13,44 +14,49 @@ public class Main{
             System.out.print("> ");
             String choice = sc.nextLine();
 
-            if(choice.equals("1")){
+            if (choice.equals("1")) {
                 System.out.print("Title : ");
                 String title = sc.nextLine();
-                Task t = new Task(nextId,title);
-                tasks.add(t);
-                nextId++;
-            }
-            else if(choice.equals("2")){
-                if(tasks.isEmpty()){
-                    System.out.println("No task added.");
+                if (title.isBlank()) {
+                    System.out.println("Title cannot be empty");
+                } else {
+                    Task t = new Task(nextId, title);
+                    tasks.add(t);
+                    nextId++;
                 }
-                else{
-                    for(Task t : tasks){
+            } else if (choice.equals("2")) {
+                if (tasks.isEmpty()) {
+                    System.out.println("No task added.");
+                } else {
+                    for (Task t : tasks) {
                         System.out.println(t);
                     }
 
                 }
-            }
-            else if(choice.equals("3")){
+            } else if (choice.equals("3")) {
                 System.out.print("Task id: ");
-                int id = Integer.parseInt(sc.nextLine());
-                boolean found = false;
-                for(Task t : tasks){
-                    if(t.getId() == id){
-                        t.markDone();
-                        found = true;
-                        System.out.println(t);
+                try {
+                    int id = Integer.parseInt(sc.nextLine().trim());
+
+                    boolean found = false;
+                    for (Task t : tasks) {
+                        if (t.getId() == id) {
+                            t.markDone();
+                            found = true;
+                            System.out.println(t);
+                        }
                     }
+                    if (found == false) {
+                        System.out.println("Invalid id");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid entry");
                 }
-                if (found == false) {
-                    System.out.println("Invalid id");
-                }
-            }
-            else if(choice.equals("4")){
+
+            } else if (choice.equals("4")) {
                 System.out.println("Byee!");
                 break;
-            }
-            else {
+            } else {
                 System.out.println("Unknown option");
             }
         }

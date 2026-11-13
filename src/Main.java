@@ -11,6 +11,16 @@ public class Main {
             }
         }
     }
+
+    static boolean markDone(List<Task> tasks,int id){
+        for (Task t : tasks) {
+            if (t.getId() == id) {
+                t.markDone();
+                return true;
+            }
+        }
+        return false;
+    }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         List<Task> tasks = new ArrayList<>();
@@ -40,18 +50,13 @@ public class Main {
                 System.out.print("Task id: ");
                 try {
                     int id = Integer.parseInt(sc.nextLine().trim());
-
-                    boolean found = false;
-                    for (Task t : tasks) {
-                        if (t.getId() == id) {
-                            t.markDone();
-                            found = true;
-                            System.out.println(t);
-                        }
+                    if(markDone(tasks,id)){
+                        System.out.println("Marked as done");
                     }
-                    if (found == false) {
+                    else{
                         System.out.println("Invalid id");
                     }
+
                 } catch (NumberFormatException e) {
                     System.out.println("Invalid entry");
                 }

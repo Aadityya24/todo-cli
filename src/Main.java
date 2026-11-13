@@ -1,18 +1,17 @@
 import java.util.*;
 
 public class Main {
-    static void showTask(List<Task> tasks){
+    static void showTask(List<Task> tasks) {
         if (tasks.isEmpty()) {
             System.out.println("No task added.");
-        }
-        else {
+        } else {
             for (Task t : tasks) {
                 System.out.println(t);
             }
         }
     }
 
-    static boolean markDone(List<Task> tasks,int id){
+    static boolean markDone(List<Task> tasks, int id) {
         for (Task t : tasks) {
             if (t.getId() == id) {
                 t.markDone();
@@ -21,6 +20,11 @@ public class Main {
         }
         return false;
     }
+
+    static void addTask() {
+
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         List<Task> tasks = new ArrayList<>();
@@ -50,10 +54,9 @@ public class Main {
                 System.out.print("Task id: ");
                 try {
                     int id = Integer.parseInt(sc.nextLine().trim());
-                    if(markDone(tasks,id)){
+                    if (markDone(tasks, id)) {
                         System.out.println("Marked as done");
-                    }
-                    else{
+                    } else {
                         System.out.println("Invalid id");
                     }
 

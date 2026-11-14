@@ -11,24 +11,9 @@ public class Main {
         }
     }
 
-    static boolean markDone(List<Task> tasks, int id) {
-        for (Task t : tasks) {
-            if (t.getId() == id) {
-                t.markDone();
-                return true;
-            }
-        }
-        return false;
-    }
-
-    static void addTask() {
-
-    }
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        List<Task> tasks = new ArrayList<>();
-        int nextId = 1;
+        TaskManager manager = new TaskManager();
 
         while (true) {
             System.out.println("1: Add task");
@@ -41,23 +26,23 @@ public class Main {
             if (choice.equals("1")) {
                 System.out.print("Title : ");
                 String title = sc.nextLine();
-                if (title.isBlank()) {
+                if(manager.addTask(title)){
+                    System.out.println("Task added");
+                }
+                else{
                     System.out.println("Title cannot be empty");
-                } else {
-                    Task t = new Task(nextId, title);
-                    tasks.add(t);
-                    nextId++;
                 }
             } else if (choice.equals("2")) {
-                showTask(tasks);
+                showTask(manager.getTasks());
             } else if (choice.equals("3")) {
                 System.out.print("Task id: ");
                 try {
                     int id = Integer.parseInt(sc.nextLine().trim());
-                    if (markDone(tasks, id)) {
-                        System.out.println("Marked as done");
-                    } else {
-                        System.out.println("Invalid id");
+                    if(manager.markTaskDone(id)){
+                        System.out.println("Task marked as done");
+                    }
+                    else{
+                        System.out.println("Invalid id!!");
                     }
 
                 } catch (NumberFormatException e) {
